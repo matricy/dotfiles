@@ -7,12 +7,23 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
-vim.keymap.set("n", "<space>to", function()
-	vim.cmd.vnew()                    -- Create new vertical split
-	vim.cmd.term()                    -- Open terminal in that split
-	vim.cmd.wincmd("J")               -- Move window to bottom (horizontal)
-	vim.api.nvim_win_set_height(0, 15) -- Set height to 5 lines
-	job_id = vim.bo.channel           -- Save terminal's job ID
-end)
+--Enable Treesitter highlighting on all filetypes regardless of size
+vim.api.nvim_create_autocmd("FileType", {
+	desc = "Enable Treesitter highlighting",
+	group = vim.api.nvim_create_augroup("treesitter-highlight", { clear = true }),
+	callback = function()
+		pcall(vim.treesitter.start)
+	end,
+})
 
-vim.keymap.set("n", "<leader>n", ":Neotree toggle<CR>", { desc = "Toggle NeoTree" })
+--Enable treesitter highlighting only on files < 100KB
+--vim.api.nvim_create_autocmd('FileType', {
+--  callback = function(args)
+--   local max_filesize = 100 * 1024 -- 100 KB
+--    local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(args.buf))
+--    if ok and stats and stats.size > max_filesize then
+--      return
+--    end
+--    pcall(vim.treesitter.start)
+--  end,
+--})

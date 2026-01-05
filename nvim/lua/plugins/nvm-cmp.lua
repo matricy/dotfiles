@@ -2,11 +2,14 @@ return {
 	{
 		"hrsh7th/nvim-cmp",
 		dependencies = {
-			"hrsh7th/cmp-nvim-lsp",      -- LSP completion source
-			"hrsh7th/cmp-buffer",        -- Buffer completion source
-			"hrsh7th/cmp-path",          -- Path completion source
-			"hrsh7th/cmp-cmdline",       -- Command line completion
-			"L3MON4D3/LuaSnip",          -- Snippet engine
+			"hrsh7th/cmp-nvim-lsp", -- LSP completion source
+			"hrsh7th/cmp-buffer", -- Buffer completion source
+			"hrsh7th/cmp-path",  -- Path completion source
+			"hrsh7th/cmp-cmdline", -- Command line completion
+			{
+				"L3MON4D3/LuaSnip", -- Snippet Engine
+				build = "make install_jsregexp",
+			},
 			"saadparwaiz1/cmp_luasnip",  -- LuaSnip completion source
 			"rafamadriz/friendly-snippets", -- Collection of snippets
 		},
