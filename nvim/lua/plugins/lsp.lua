@@ -17,6 +17,15 @@ return {
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			vim.lsp.config("*", { capabilities = capabilities })
 
+			vim.lsp.config("sourcekit", {
+				cmd = { "sourcekit-lsp" },
+				filetypes = { "swift" },
+				root_markers = { "Package.swift", ".git" },
+				capabilities = capabilities,
+			})
+
+			vim.lsp.enable("sourcekit")
+
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
 				callback = function(ev)
