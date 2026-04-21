@@ -8,7 +8,11 @@ return {
 			"nvim-tree/nvim-web-devicons",
 		},
 		config = function()
-			require("neo-tree").setup({})
+			require("neo-tree").setup({
+				filesystem = {
+					hijack_netrw_behavior = "disabled",
+				},
+			})
 			vim.keymap.set("n", "<leader>e", ":Neotree toggle<CR>", { desc = "Toggle Neo-tree" })
 			vim.keymap.set("n", "<leader>E", ":Neotree reveal<CR>", { desc = "Reveal file in Neo-tree" })
 		end,

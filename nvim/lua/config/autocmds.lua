@@ -7,6 +7,11 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
+-- Suppress "[Process exited]" in terminal buffers (needed for pokemon script
+-- in snacks dashboard to render cleanly).
+vim.api.nvim_clear_autocmds({ group = "nvim.terminal", event = "TermClose" })
+
+
 --Enable Treesitter highlighting on all filetypes regardless of size
 vim.api.nvim_create_autocmd("FileType", {
 	desc = "Enable Treesitter highlighting",
